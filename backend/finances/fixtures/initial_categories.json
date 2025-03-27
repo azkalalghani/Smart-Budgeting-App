@@ -1,0 +1,79 @@
+[
+    {
+      "model": "finances.category",
+      "pk": 1,
+      "fields": {
+        "name": "Housing",
+        "icon": "home",
+        "color": "#42a5f5",
+        "is_expense": true,
+        "created_at": "2023-01-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "finances.category",
+      "pk": 2,
+      "fields": {
+        "name": "Food",
+        "icon": "restaurant",
+        "color": "#ffca28",
+        "is_expense": true,
+        "created_at": "2023-01-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "finances.category",
+      "pk": 3,
+      "fields": {
+        "name": "Transportation",
+        "icon": "directions_car",
+        "color": "#66bb6a",
+        "is_expense": true,
+        "created_at": "2023-01-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "finances.category",
+      "pk": 4,
+      "fields": {
+        "name": "Entertainment",
+        "icon": "movie",
+        "color": "#ec407a",
+        "is_expense": true,
+        "created_at": "2023-01-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "finances.category",
+      "pk": 5,
+      "fields": {
+        "name": "Utilities",
+        "icon": "power",
+        "color": "#ab47bc",
+        "is_expense": true,
+        "created_at": "2023-01-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "finances.category",
+      "pk": 6,
+      "fields": {
+        "name": "Salary",
+        "icon": "work",
+        "color": "#26a69a",
+        "is_expense": false,
+        "created_at": "2023-01-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "finances.category",
+      "pk": 7,
+      "fields": {
+        "name": "Investment",
+        "icon": "trending_up",
+        "color": "#5c6bc0",
+        "is_expense": false,
+        "created_at": "2023-01-01T00:00:00Z"
+      }
+    }
+  ]
