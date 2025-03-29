@@ -10,7 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
 from pathlib import Path
+import dj_database_url
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +26,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-66h^6cb_(nu3)oymk@93l%!t4gvs+l6%ik2j(0&)jo4&ab1#e3'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-66h^6cb_(nu3)oymk@93l%!t4gvs+l6%ik2j(0&)jo4&ab1#e3')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1', 'db.sdduhtyuwzvzurxwukdr.supabase.co').split(',')   
 
 
 # Application definition
@@ -94,12 +100,28 @@ WSGI_APPLICATION = 'budget_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+DATABASE_URL = os.environ.get('DATABASE_URL')
+
+if DATABASE_URL:
+    # Parse the DATABASE_URL manually to avoid any issues
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'postgres',  # Database name (usually 'postgres' in Supabase)
+            'USER': 'postgres',  # Default Supabase user is 'postgres'
+            'PASSWORD': '@Desember2003',  # Your Supabase database password
+            'HOST': 'db.sdduhtyuwzvzurxwukdr.supabase.co',  # Your Supabase host
+            'PORT': '5432',  # Default PostgreSQL port
+        }
     }
-}
+else:
+    # SQLite configuration for development
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
@@ -144,9 +166,8 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CORS settings
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # React frontend
-]
+CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS', 'http://localhost:5173,http://127.0.0.1:5173', 'smartbudgetingapp-4yanvyfu8-azkalalghanis-projects.vercel.app').split(',')
+CORS_ALLOW_CREDENTIALS = True
 
 # REST Framework settings
 REST_FRAMEWORK = {

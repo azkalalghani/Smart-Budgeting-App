@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8000/api';
+const API_URL = process.env.NODE_ENV === 'production' 
+  ? 'db.sdduhtyuwzvzurxwukdr.supabase.co'  // Replace with your actual deployed backend URL
+  : 'http://localhost:8000/api';  // Development URL
 
 // Configure axios defaults
 axios.defaults.baseURL = API_URL;
