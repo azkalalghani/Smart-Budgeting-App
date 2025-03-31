@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API_URL = process.env.NODE_ENV === 'production' 
-  ? 'db.sdduhtyuwzvzurxwukdr.supabase.co'  // Replace with your actual deployed backend URL
+  ? 'https://your-railway-app-name.up.railway.app/api'  // Replace with your Railway URL
   : 'http://localhost:8000/api';  // Development URL
 
 // Configure axios defaults

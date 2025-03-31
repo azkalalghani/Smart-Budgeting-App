@@ -101,28 +101,21 @@ WSGI_APPLICATION = 'budget_project.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASE_URL = os.environ.get('DATABASE_URL')
-
 if DATABASE_URL:
-    # Parse the DATABASE_URL manually to avoid any issues
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'postgres',  # Database name (usually 'postgres' in Supabase)
-            'USER': 'postgres',  # Default Supabase user is 'postgres'
-            'PASSWORD': '@Desember2003',  # Your Supabase database password
-            'HOST': 'db.sdduhtyuwzvzurxwukdr.supabase.co',  # Your Supabase host
-            'PORT': '5432',  # Default PostgreSQL port
-        }
+        'default': dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
     }
 else:
-    # SQLite configuration for development
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
